@@ -1,0 +1,13 @@
+{
+  "name": "gogoai-v5",
+  "version": "1.0.0",
+  "description": "GoGoAI Telegram Web App V5.0 FULL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  }
+}
