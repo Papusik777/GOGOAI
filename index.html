@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GoGoAI Crypto News</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .news-card { 
+      background: white; 
+      padding: 15px; 
+      margin: 15px 0; 
+      border-radius: 10px; 
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+    }
+    .news-title { font-weight: bold; font-size: 18px; margin-bottom: 8px; }
+    .news-desc { margin-bottom: 10px; }
+    .ai-status { font-weight: bold; }
+    .btn-open { 
+      padding: 10px; background: #ff6600; color: white; 
+      border: none; border-radius: 5px; font-weight: bold; margin-top: 10px; 
+      width: 100%;
+    }
+    .analytics-block {
+      background-color: #ffeaa7; padding: 10px; border-radius: 8px; margin: 10px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <h1>🐰 GoGoAI Crypto News</h1>
+  </header>
+
+  <div class="analytics analytics-block" id="analytics">
+    Loading analytics...
+  </div>
+
+  <div id="news-container" class="news-list">
+    Loading news...
+  </div>
+
+  <script>
+    async function loadNews() {
+      const res = await fetch('/api/news');
+      const data = await res.json();
+      const container = document.getElementById('news-container');
+      container.innerHTML = '';
+      data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'news-card';
+        card.innerHTML = `
+          <div class="news-title">${item.title}</div>
+          <div class="news-desc">${item.description}</div>
+          <div class="ai-status">AI Status: ${item.aiStatus}</div>
+          <button class="btn-open" onclick="openNews(${item.id})">Open Details</button>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    async function loadAnalytics() {
+      const res = await fetch('/api/analytics');
+      const data = await res.json();
+      document.getElementById('analytics').innerHTML = `
+        Gold: ${data.gold} | Silver: ${data.silver} | 
+        Platinum: ${data.platinum} | Palladium: ${data.palladium} | S&P500: ${data.sp500}
+      `;
+    }
+
+    function openNews(id) {
+      window.location.href = `/news/${id}`;
+    }
+
+    loadNews();
+    loadAnalytics();
+  </script>
+</body>
+</html>
