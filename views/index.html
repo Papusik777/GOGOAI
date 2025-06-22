@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GoGoAI Crypto News</title>
-    <link rel="stylesheet" href="/style.css" />
-  </head>
-  <body>
-    <header>
-      <h1>🐰 GoGoAI Crypto News</h1>
-      <div id="analytics"></div>
-    </header>
-    <main id="news"></main>
-  </body>
-</html>
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors());
+app.use(express.static(path.join(__dirname, "views")));
+
+const news = require("./data/news");
+const analytics = require("./data/analytics");
+
+app.get("/api/news", (req, res) => {
+  res.json(news);
+});
+
+app.get("/api/analytics", (req, res) => {
+  res.json(analytics);
+});
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "views/index.html"));
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
