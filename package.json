@@ -1,7 +1,7 @@
 {
-  "name": "gogoai-v5",
+  "name": "gogoai-v5-clean",
   "version": "1.0.0",
-  "description": "GoGoAI Telegram Web App V5.0 FULL",
+  "description": "GoGoAI V5 Clean Architecture",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
