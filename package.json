@@ -1,13 +1,14 @@
 {
-  "name": "gogoai-v5-clean",
+  "name": "gogoai-backend",
   "version": "1.0.0",
-  "description": "GoGoAI V5 Clean Architecture",
+  "description": "GoGoAI Backend Production",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "openai": "^4.20.0"
   }
 }
